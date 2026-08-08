@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SentinelAudit — Mounjeddine Ali</title>
+<meta name="description" content="An automated security and compliance framework for remote Windows workstations. MSIT capstone project by Mounjeddine Ali.">
+<style>
+:root{
+  --navy:#0F2A43;
+  --navy2:#16374F;
+  --steel:#5E7185;
+  --light:#EDF1F5;
+  --green:#3FA34D;
+  --red:#C0392B;
+  --line:#D8DFE7;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:Calibri,"Segoe UI",Arial,Helvetica,sans-serif;
+  font-size:17px;line-height:1.6;color:#1C2B39;background:#fff;
+}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+h1,h2,h3{margin:0;line-height:1.25;}
+p{margin:0 0 14px;}
+a{color:var(--navy);}
+
+/* header */
+header{background:var(--navy);color:#fff;padding:52px 0 46px;}
+header h1{font-size:40px;font-weight:700;}
+header .role{color:#C7D3DF;font-size:15px;margin-bottom:26px;}
+header .tagline{color:#E3EAF1;font-size:19px;max-width:60ch;margin:14px 0 0;}
+header .rule{width:60px;height:3px;background:var(--green);margin:22px 0 0;}
+
+/* sections */
+section{padding:44px 0;border-bottom:1px solid var(--line);}
+h2{font-size:25px;font-weight:700;color:var(--navy);margin-bottom:16px;}
+
+/* score card */
+.card{border:1px solid var(--line);border-radius:4px;overflow:hidden;}
+.card-head{background:var(--light);padding:12px 18px;font-size:14px;color:var(--steel);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.card-body{padding:20px 18px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+.score{font-size:52px;font-weight:700;color:var(--navy);line-height:1;}
+.score span{font-size:20px;color:var(--steel);font-weight:400;}
+.status{font-size:16px;color:var(--red);font-weight:600;}
+table{width:100%;border-collapse:collapse;}
+th,td{text-align:left;padding:10px 18px;border-top:1px solid var(--line);font-size:15px;}
+th{background:var(--light);color:var(--navy);font-weight:600;font-size:14px;}
+td.num{width:90px;color:var(--steel);}
+td.res{width:150px;}
+.pass{color:var(--green);font-weight:600;}
+.fail{color:var(--red);font-weight:600;}
+.note{font-size:14px;color:var(--steel);margin-top:12px;}
+
+/* modules */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.col{border:1px solid var(--line);border-radius:4px;padding:18px;}
+.col h3{font-size:18px;color:var(--navy);margin-bottom:8px;}
+.col p{font-size:15px;color:#42536A;margin:0;}
+
+/* metrics */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
+.metric{border:1px solid var(--line);border-radius:4px;padding:18px;text-align:center;}
+.metric .v{font-size:28px;font-weight:700;color:var(--navy);}
+.metric .l{font-size:14px;color:var(--steel);margin-top:4px;}
+
+/* stack */
+.tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tags span{background:var(--light);border:1px solid var(--line);border-radius:3px;
+  padding:5px 12px;font-size:14px;color:var(--navy2);}
+
+/* links */
+ul.links{list-style:none;padding:0;margin:0;}
+ul.links li{border-top:1px solid var(--line);}
+ul.links li:first-child{border-top:none;}
+ul.links a{display:block;padding:14px 0;text-decoration:none;}
+ul.links a:hover strong{text-decoration:underline;}
+ul.links strong{display:block;font-size:17px;color:var(--navy);font-weight:600;}
+ul.links em{display:block;font-style:normal;font-size:14.5px;color:var(--steel);margin-top:2px;}
+
+footer{padding:28px 0 40px;font-size:14.5px;color:var(--steel);}
+footer p{margin:0 0 5px;}
+a:focus-visible{outline:2px solid var(--navy);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="role">Mounjeddine Ali &nbsp;·&nbsp; MSc Information Technology</div>
+    <h1>SentinelAudit</h1>
+    <p class="tagline">An automated security and compliance framework for remote Windows workstations.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <section>
+    <h2>The problem</h2>
+    <p>When employees work remotely, their laptops sit outside the corporate firewall, and the IT team has no simple way to confirm each machine is still secure. Checking by hand is slow and easy to skip, while the commercial tools that automate it are expensive and complex to run.</p>
+    <p>SentinelAudit scans a Windows workstation, scores it against a security baseline, and shows the result on a dashboard. It is built entirely from free, open-source tools.</p>
+  </section>
+
+  <section>
+    <h2>Example output</h2>
+    <div class="card">
+      <div class="card-head">
+        <span>Compliance report</span>
+        <span>WORKSTATION-01 &nbsp;·&nbsp; Windows 11</span>
+      </div>
+      <div class="card-body">
+        <div class="score">60<span>/100</span></div>
+        <div class="status">Needs attention</div>
+      </div>
+      <table>
+        <tr><th>Control</th><th>Points</th><th>Result</th></tr>
+        <tr><td>Disk encryption (BitLocker)</td><td class="num">0 / 40</td><td class="res"><span class="fail">Off</span></td></tr>
+        <tr><td>Windows Firewall</td><td class="num">40 / 40</td><td class="res"><span class="pass">All profiles on</span></td></tr>
+        <tr><td>OS patch level</td><td class="num">20 / 20</td><td class="res"><span class="pass">4 recent updates</span></td></tr>
+      </table>
+    </div>
+    <p class="note">Real output from a live machine. The tool detected a genuine misconfiguration: disk encryption was switched off.</p>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="cols">
+      <div class="col">
+        <h3>1. Scanner</h3>
+        <p>Reads encryption, firewall, and patch status from Windows. Read-only by design, so it can inspect a machine but never change one.</p>
+      </div>
+      <div class="col">
+        <h3>2. Scoring engine</h3>
+        <p>Weighs each finding against a security baseline and produces a score out of 100. Every point traces back to a rule you can read.</p>
+      </div>
+      <div class="col">
+        <h3>3. Dashboard</h3>
+        <p>Presents the score visually, with failing controls in red and passing ones in green, and all timestamps standardised to UTC.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <div class="metrics">
+      <div class="metric"><div class="v">1.48s</div><div class="l">Average scan time</div></div>
+      <div class="metric"><div class="v">32/33</div><div class="l">Tests passing</div></div>
+      <div class="metric"><div class="v">0.05 KB</div><div class="l">Peak memory</div></div>
+      <div class="metric"><div class="v">$0</div><div class="l">Licensing cost</div></div>
+    </div>
+    <p class="note">The single failing test is deliberate. It reproduces a real bug found during development and is kept in the suite to document why the fix exists.</p>
+  </section>
+
+  <section>
+    <h2>Built with</h2>
+    <div class="tags">
+      <span>Python 3.12</span><span>Streamlit</span><span>pytest</span><span>matplotlib</span><span>Git</span><span>PowerShell</span><span>JSON</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Deliverables</h2>
+    <ul class="links">
+      <li><a href="https://github.com/mounjeddineali/SentinelAudit"><strong>Source code repository</strong><em>All modules, the full test suite, and the dependency manifest</em></a></li>
+      <li><a href="https://github.com/mounjeddineali/SentinelAudit/releases"><strong>Tagged releases</strong><em>Versioned milestones from core modules to the working prototype</em></a></li>
+      <li><a href="https://github.com/mounjeddineali/SentinelAudit/tree/main/src"><strong>The modules</strong><em>Scanner, scoring engine, dashboard, integration runner, and benchmarks</em></a></li>
+      <li><a href="https://github.com/mounjeddineali/SentinelAudit/tree/main/docs"><strong>Project documentation</strong><em>Literature review, architecture, testing results, and evaluation</em></a></li>
+    </ul>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Mounjeddine Ali · MSc Information Technology</p>
+    <p><a href="https://github.com/mounjeddineali">github.com/mounjeddineali</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
